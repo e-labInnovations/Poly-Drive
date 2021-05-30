@@ -24,7 +24,7 @@
         <div class="col-md-3">
           <div class="card-counter primary">
             <i class="fa fa-eye"></i>
-            <span class="count-numbers">12K</span>
+            <span class="count-numbers"><%= data.cardData.view %></span>
             <span class="count-name">Views</span>
           </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="col-md-3">
           <div class="card-counter danger">
             <i class="fa fa-download"></i>
-            <span class="count-numbers">10K</span>
+            <span class="count-numbers"><%= data.cardData.downloads %></span>
             <span class="count-name">Downloads</span>
           </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="col-md-3">
           <div class="card-counter success">
             <i class="fa fa-file-text-o"></i>
-            <span class="count-numbers">540</span>
+            <span class="count-numbers"><%= data.cardData.files %></span>
             <span class="count-name">Files</span>
           </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="col-md-3">
           <div class="card-counter info">
             <i class="fa fa-users"></i>
-            <span class="count-numbers">15</span>
+            <span class="count-numbers"><%= data.cardData.contributers %></span>
             <span class="count-name">Contributers</span>
           </div>
         </div>
@@ -62,17 +62,46 @@
 	<div class="text-intro">
 	<h2><%= page %></h2>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
 	</div>
 </div>
+
+<section>
+    <div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-lg-6 col-xl-6">
+                            <h4 class="header-title m-b-30">Dipartments</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <% data.data.children.forEach(function(file){ %>
+                            <div class="col-6 col-lg-3 col-xl-2">
+                                <a href="<%= (file.type == 'folder'? '/folder/' : '/file/') + file.id %>">
+                                    <div class="file-man-box">
+                                        <div class="file-img-box"><img src="<%= file.iconlink %>" alt="icon"></div>
+                                        <div class="file-man-title">
+                                            <h5 class="mb-0 text-overflow"><%= file.name %></h5>
+                                            <p class="mb-0"><small><%= file.size == '0 Byte'? (file.children? file.children.length + ' Files':'0 Byte'):file.size %></small></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- container -->
+</div>
 </section>
+
 <% include partials/footer %>
 <% include partials/script %>
 </html>
