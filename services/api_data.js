@@ -122,8 +122,13 @@ const getFolderData = (folderId) => {
     })
 }
 
+const updateDownloadCount = () => {
+    cardData.downloads = cardData.downloads + 1;
+}
+
 
 module.exports = {
     getHomeData,
-    getFolderData
+    getFolderData,
+    updateDownloadCount
 }

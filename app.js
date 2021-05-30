@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const apiData = require("./services/api_data.js");
 
 var app = express();
 
@@ -24,7 +25,9 @@ app.use('/users', usersRouter);
 
 /* GET 404 page. */
 app.get('*', function(req, res){
-  res.send('what???', 404);
+    apiData.getHomeData().then(data => {
+        res.render('404', {page:'Error 404', menuId:'', data: data});
+    })
 });
 
 // catch 404 and forward to error handler

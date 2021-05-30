@@ -1,0 +1,41 @@
+
+<!-- Modal: modal -->
+<div class="modal fade right" id="modal-<%= fileData.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead"><%= fileData.name %>
+        </p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="white-text">×</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="">
+          <i class="far fa-file-alt fa-4x mb-3 animated rotateIn"></i>
+          <p>
+            <strong>Your opinion matters</strong>
+          </p>
+          <p>Have some ideas how to improve our product?
+            <strong>Give us your feedback.</strong>
+          </p>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a href="/file/<%= fileData.id %>" class="btn btn-primary px-3 text-light"><i class="fa fa-eye" aria-hidden="true"></i></a>
+        <a class="btn btn-primary px-3 text-light"><i class="fa fa-share" aria-hidden="true"></i></a>
+        <a class="btn btn-primary px-3 text-light"><i class="fa fa-bookmark" aria-hidden="true"></i></a>
+        <a href="/download/<%= fileData.id %>" class="btn btn-primary px-3 text-light"><i class="fa fa-download" aria-hidden="true"></i></a>
+        <a class="btn btn-outline-primary waves-effect px-3" data-dismiss="modal">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal: modal -->

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include partials/head %> 
+</head>
+<body>
+<% include partials/menu %>
+
+<section>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+         <div class="card mb-4">
+            <img class="card-img-top" src="<%= data.data.iconlink %>" alt="Card image cap">
+            <div class="card-body">
+               <h5 class="card-title">Card title</h5>
+               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="http://www.jquery2dotnet.com/" class="btn btn-outline-dark btn-sm">Go somewhere</a>
+            </div>
+         </div>
+      </div>
+    </div>
+</section>
+
+<% include partials/footer %>
+<% include partials/script %>
+</html>
