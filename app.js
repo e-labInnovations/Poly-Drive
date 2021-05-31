@@ -25,9 +25,9 @@ app.use('/contributers', contributersRouter);
 
 /* GET 404 page. */
 app.get('*', function(req, res){
-    apiData.getHomeData().then(data => {
-        res.render('404', {page:'Error 404', menuId:'', data: data});
-    })
+  apiData.getHomeData().then(data => {
+    res.render('404', {page:'Error 404', menuId:'', data: data});
+  })
 });
 
 // catch 404 and forward to error handler

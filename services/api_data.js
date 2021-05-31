@@ -1,4 +1,7 @@
 const axios = require('axios');
+const utilities = require('./utilities.js');
+require('dotenv').config();
+
 
 var cardData = {
     views : 0,
@@ -11,13 +14,14 @@ var contributers = [];
 const fetchData = async () => {
     console.log("calling api");
     
-    return await axios.get('http://localhost:3000/api.json')
+    return await axios.get(process.env.API_KEY)
     .then(function (response) {
         // handle success
         cardData.views = response.data.data.infoData.views;
         cardData.downloads = response.data.data.infoData.downloads;
         cardData.contributers = response.data.data.contributers.length;
-        contributers = response.data.data.contributers
+        contributers = response.data.data.contributers;
+        cardData.files = getFilesCount(response.data.data.data);
         return response.data.data.data;
     })
     .catch(function (error) {
@@ -102,11 +106,17 @@ const getHomeData = () => {
                 }
         });
         
-        cardData.files = getFilesCount(data);
+        let modifiedCardData = {
+          views : utilities.intToString(cardData.views),
+          downloads : utilities.intToString(cardData.downloads),
+          files : utilities.intToString(cardData.files),
+          contributers : utilities.intToString(cardData.contributers)
+        };
+        
         return {
             data,
             dipartments,
-            cardData
+            'cardData' : modifiedCardData
         }
     })
 }
@@ -128,13 +138,21 @@ const getFolderData = (folderId) => {
     })
 }
 
-const updateDownloadCount = () => {
-    cardData.downloads = cardData.downloads + 1;
+const updateDownloadsCount = () => {
+  cardData.downloads = cardData.downloads + 1;
+}
+
+const updateViewsCount = () => {
+  cardData.views = cardData.views + 1;
+  if(cardData.views%10 == 0) {
+    console.log('views count updated to the server');
+  }
 }
 
 
 module.exports = {
     getHomeData,
     getFolderData,
-    updateDownloadCount
+    updateDownloadsCount,
+    updateViewsCount
 }

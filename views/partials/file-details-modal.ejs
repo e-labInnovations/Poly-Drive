@@ -1,12 +1,12 @@
 
 <!-- Modal: modal -->
-<div class="modal fade right" id="modal-<%= fileData.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade right" id="modal-file-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true" data-backdrop="false">
   <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
     <div class="modal-content">
       <!--Header-->
       <div class="modal-header">
-        <p class="heading lead"><%= fileData.name %></p>
+        <p class="heading lead" id="modal-file-name">tt</p>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="white-text">×</span>
@@ -19,24 +19,21 @@
           <div class="col-6 col-md-4">
             Type:
           </div>
-          <div class="col-6 col-md-8">
-            <%= fileData.mimetype %>
+          <div class="col-6 col-md-8" id="modal-file-type">
           </div>
         </div>
         <div class="row">
           <div class="col-6 col-md-4">
             Size:
           </div>
-          <div class="col-6 col-md-8">
-            <%= fileData.size %>
+          <div class="col-6 col-md-8" id="modal-file-size">
           </div>
         </div>
         <div class="row">
           <div class="col-6 col-md-4">
             Date Uploaded:
           </div>
-          <div class="col-6 col-md-8">
-            <%= fileData.created %>
+          <div class="col-6 col-md-8" id="modal-file-created">
           </div>
         </div>
         <div class="row">
@@ -44,17 +41,17 @@
             Contributer:
           </div>
           <div class="col-6 col-md-8">
-            <a href="/contributers/<%= fileData.contributer.id %>"><%= fileData.contributer.name %></a>
+            <a href="#" id="modal-file-contributer"></a>
           </div>
         </div>
       </div>
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-        <a href="/file/<%= fileData.id %>" class="btn btn-primary px-3 text-light"><i class="fa fa-eye" aria-hidden="true"></i></a>
-        <a class="btn btn-primary px-3 text-light"><i class="fa fa-share" aria-hidden="true"></i></a>
-        <a class="btn btn-primary px-3 text-light"><i class="fa fa-bookmark" aria-hidden="true"></i></a>
-        <a href="/download/<%= fileData.id %>" class="btn btn-primary px-3 text-light"><i class="fa fa-download" aria-hidden="true"></i></a>
+        <a href="#" class="btn btn-primary px-3 text-light" id="modal-file-view"><i class="fa fa-eye" aria-hidden="true"></i></a>
+        <a class="btn btn-primary px-3 text-light" id="modal-file-share"><i class="fa fa-share" aria-hidden="true"></i></a>
+        <a class="btn btn-primary px-3 text-light" id="modal-file-save"><i class="fa fa-bookmark" aria-hidden="true"></i></a>
+        <a href="#" class="btn btn-primary px-3 text-light" id="modal-file-download"><i class="fa fa-download" aria-hidden="true"></i></a>
         <a class="btn btn-outline-primary waves-effect px-3" data-dismiss="modal">Cancel</a>
       </div>
     </div>

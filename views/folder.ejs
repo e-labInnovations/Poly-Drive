@@ -20,7 +20,7 @@
                     <div class="row">
                         <% data.data.children.forEach(function(file){ %>
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                                <a href="<%= file.type == 'folder'? ('/folder/' + file.id)  : '' %>"  <%= file.type == 'file' && `data-toggle=modal data-target=#modal-${file.id}` %>>
+                                <a href="<%= file.type == 'folder'? ('/folder/' + file.id)  : '#' %>" <%= file.type == 'file' && `onClick=showModal("${file.id}")` %> >
                                     <div class="file-man-box">
                                         <div class="file-img-box"><img src="<%= file.iconlink %>" alt="icon"></div>
                                         <div class="file-man-title">
@@ -29,10 +29,6 @@
                                         </div>
                                     </div>
                                 </a>
-                            
-                            <% if (file.type == 'file') { %>
-                              <%-include("partials/file-details-modal", {fileData: file})  %>
-                            <% } %>
                             </div>
                             
                             
@@ -48,6 +44,8 @@
     </div>
     <!-- container -->
 
+
+    <% include partials/file-details-modal %>
     
 </section>
 
@@ -56,5 +54,58 @@
 
 <script>
   const files = <%- JSON.stringify(data.data.children.filter(file => file.type == 'file')) %>;
+  
+  const showModal = (id) => {
+    const currentFile = files.find(file => file.id == id);
+    
+    $("#modal-file-name").text(currentFile.name);
+    $("#modal-file-type").text(currentFile.mimetype);
+    $("#modal-file-size").text(currentFile.size);
+    $("#modal-file-created").text(currentFile.created);
+    $("#modal-file-contributer").text(currentFile.contributer.name);
+    $("#modal-file-contributer").attr("href", "/contributers/" + currentFile.contributer.id);
+    $("#modal-file-view").attr("href", "/file/" + currentFile.id);
+    $("#modal-file-download").attr("href", "/download/" + currentFile.id);
+    $("#modal-file-share").click(() => {
+      alert('share' + currentFile.id)
+    })
+    
+    //save to savedFiles
+    $("#modal-file-save").click(() => {
+      let savedFiles = JSON.parse(localStorage.getItem('savedFiles'));
+      if(savedFiles == null) {
+        savedFiles = [];
+        savedFiles.push(currentFile);
+        localStorage.setItem('savedFiles', JSON.stringify(savedFiles));
+        savedFiles.push(currentFile);
+        localStorage.setItem('savedFiles', JSON.stringify(savedFiles));
+        Toastify({
+          text: "Already saved",
+          backgroundColor: "linear-gradient(to right, #01bbb8, #28c70F)",
+          destination: "/saved"
+        }).showToast();
+      } else {
+        let alreadySaved = savedFiles.find(file => file.id == currentFile.id);
+        if(alreadySaved) {
+          Toastify({
+            text: "Already saved",
+            backgroundColor: "linear-gradient(to right, #9ed6fe, #0795fd)",
+            destination: "/saved"
+          }).showToast();
+        } else {
+          savedFiles.push(currentFile);
+          localStorage.setItem('savedFiles', JSON.stringify(savedFiles));
+          Toastify({
+            text: "Already saved",
+            backgroundColor: "linear-gradient(to right, #01bbb8, #28c70F)",
+            destination: "/saved"
+          }).showToast();
+        }
+      }
+    })
+    
+    
+    $("#modal-file-details").modal();
+  }
 </script>
 </html>
