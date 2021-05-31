@@ -13,9 +13,13 @@ router.get('/', function(req, res, next) {
 router.get('/folder/:folderId', function(req, res, next) {
     const folderId = req.params.folderId;
     apiData.getFolderData(folderId).then(data => {
-        res.render('folder', {page:data.data.name, menuId:'', data: data});
+        if(data.data) {
+            res.render('folder', {page:data.data.name, menuId:'', data: data});
+        } else {
+            res.render('404', {page:'Error 404', menuId:'', data: data});
+        }
     }).catch(error => {
-        console.log(error)
+        console.log(error);
     })
 });
 
@@ -23,9 +27,13 @@ router.get('/folder/:folderId', function(req, res, next) {
 router.get('/file/:fileId', function(req, res, next) {
     const fileId = req.params.fileId;
     apiData.getFolderData(fileId).then(data => {
-        res.render('file', {page:data.data.name, menuId:'', data: data});
+        if(data.data) {
+            res.render('file', {page:data.data.name, menuId:'', data: data});
+        } else {
+            res.render('404', {page:'Error 404', menuId:'', data: data});
+        }
     }).catch(error => {
-        console.log(error)
+        console.log(error);
     })
 });
 

@@ -6,8 +6,7 @@
     <div class="modal-content">
       <!--Header-->
       <div class="modal-header">
-        <p class="heading lead"><%= fileData.name %>
-        </p>
+        <p class="heading lead"><%= fileData.name %></p>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="white-text">×</span>
@@ -16,14 +15,37 @@
 
       <!--Body-->
       <div class="modal-body">
-        <div class="">
-          <i class="far fa-file-alt fa-4x mb-3 animated rotateIn"></i>
-          <p>
-            <strong>Your opinion matters</strong>
-          </p>
-          <p>Have some ideas how to improve our product?
-            <strong>Give us your feedback.</strong>
-          </p>
+        <div class="row">
+          <div class="col-6 col-md-4">
+            Type:
+          </div>
+          <div class="col-6 col-md-8">
+            <%= fileData.mimetype %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 col-md-4">
+            Size:
+          </div>
+          <div class="col-6 col-md-8">
+            <%= fileData.size %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 col-md-4">
+            Date Uploaded:
+          </div>
+          <div class="col-6 col-md-8">
+            <%= fileData.created %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 col-md-4">
+            Contributer:
+          </div>
+          <div class="col-6 col-md-8">
+            <a href="/contributers/<%= fileData.contributer.id %>"><%= fileData.contributer.name %></a>
+          </div>
         </div>
       </div>
 

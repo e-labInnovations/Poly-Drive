@@ -24,7 +24,7 @@
         <div class="col-md-3">
           <div class="card-counter primary">
             <i class="fa fa-eye"></i>
-            <span class="count-numbers"><%= data.cardData.view %></span>
+            <span class="count-numbers"><%= data.cardData.views %></span>
             <span class="count-name">Views</span>
           </div>
         </div>
@@ -79,7 +79,7 @@
 
                     <div class="row">
                         <% data.data.children.forEach(function(file){ %>
-                            <div class="col-6 col-lg-3 col-xl-2">
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                 <a href="<%= (file.type == 'folder'? '/folder/' : '/file/') + file.id %>">
                                     <div class="file-man-box">
                                         <div class="file-img-box"><img src="<%= file.iconlink %>" alt="icon"></div>

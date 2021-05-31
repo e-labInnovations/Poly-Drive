@@ -1,12 +1,24 @@
 const axios = require('axios');
 
+var cardData = {
+    views : 0,
+    downloads : 0,
+    files : 0,
+    contributers : 0
+}
+var contributers = [];
+
 const fetchData = async () => {
     console.log("calling api");
     
     return await axios.get('http://localhost:3000/api.json')
     .then(function (response) {
         // handle success
-        return response.data;
+        cardData.views = response.data.data.infoData.views;
+        cardData.downloads = response.data.data.infoData.downloads;
+        cardData.contributers = response.data.data.contributers.length;
+        contributers = response.data.data.contributers
+        return response.data.data.data;
     })
     .catch(function (error) {
         // handle error
@@ -16,12 +28,6 @@ const fetchData = async () => {
 }
 
 var data = fetchData();
-var cardData = {
-    view : 0,
-    downloads : 0,
-    files : 0,
-    contributers : 0
-}
 
 const getData = () => {
     if(data) {
